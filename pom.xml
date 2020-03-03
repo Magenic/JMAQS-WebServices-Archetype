@@ -11,7 +11,7 @@
         <compiler.plugin.version>3.6.1</compiler.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <testng.version>6.14.3</testng.version>
-        <jmaq.version>0.0.1-SNAPSHOT</jmaq.version>
+        <jmaq.version>2.0.0</jmaq.version>
     </properties>
     
     <build>
@@ -33,14 +33,8 @@
     <dependencies>
         <dependency>
             <groupId>com.magenic.jmaqs.webservices</groupId>
-            <artifactId>jmaqs-webservices</artifactId>
+            <artifactId>jmaqs-webservices-jdk8</artifactId>
             <version>${jmaq.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
