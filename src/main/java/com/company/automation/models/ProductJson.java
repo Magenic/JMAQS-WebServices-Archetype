@@ -1,7 +1,6 @@
 package com.company.automation.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * The type Product json.
@@ -11,22 +10,26 @@ public class ProductJson {
   /**
    * int ID
    */
-  @SerializedName("Id") @Expose private int id;
+  @JsonProperty("Id")
+  private int id;
 
   /**
    * String name
    */
-  @SerializedName("Name") @Expose private String name;
+  @JsonProperty("Name")
+  private String name;
 
   /**
    * String category
    */
-  @SerializedName("Category") @Expose private String category;
+  @JsonProperty("Category")
+  private String category;
 
   /**
    * Integer price
    */
-  @SerializedName("Price") @Expose private Integer price;
+  @JsonProperty("Price")
+  private Integer price;
 
   /**
    * Gets id.

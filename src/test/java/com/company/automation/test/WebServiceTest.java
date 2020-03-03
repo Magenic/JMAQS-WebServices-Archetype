@@ -1,9 +1,10 @@
 package com.company.automation.test;
 
-import com.google.gson.Gson;
-import com.magenic.jmaqs.webservices.BaseWebServiceTest;
-import com.magenic.jmaqs.webservices.WebServiceUtils;
 import com.company.automation.models.ProductJson;
+import com.magenic.jmaqs.webservices.jdk8.BaseWebServiceTest;
+import com.magenic.jmaqs.webservices.jdk8.WebServiceUtilities;
+import java.io.IOException;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.entity.ContentType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,16 +17,23 @@ public class WebServiceTest extends BaseWebServiceTest {
   /**
    * Gets json deserialized Test.
    */
-  @Test public void getJsonDeserialized() {
-    String result = "";
+  @Test
+  public void getJsonDeserialized() {
+    CloseableHttpResponse result = null;
     try {
-      result = WebServiceUtils.getResponseBody(this.getWebServiceTestObject().getWebServiceWrapper()
-          .getContent("/api/XML_JSON/GetProduct/1", ContentType.APPLICATION_JSON, false));
+      result = this.getTestObject().getWebServiceDriver()
+          .getContent("/api/XML_JSON/GetProduct/1", ContentType.APPLICATION_JSON, false);
     } catch (Exception e) {
       e.printStackTrace();
     }
 
-    ProductJson productJson = new Gson().fromJson(result, ProductJson.class);
+
+    ProductJson productJson = null;
+    try {
+      productJson = WebServiceUtilities.deserializeJson(result, ProductJson.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     Assert.assertEquals(productJson.getId(), 1, "Expected to get product 1");
   }
 }
